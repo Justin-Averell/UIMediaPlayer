@@ -31,8 +31,6 @@ $C.@PageOverlay {
         $C.@Title {
           @Text = "SERVER STATS";
         }
-
-        $C.@HeaderSearch {}
       }
     }
 
