@@ -66,11 +66,13 @@ public class PlayerGui extends InteractiveCustomUIPage<PlayerGui.SearchGuiData> 
 
     private String searchQuery = "";
     private List<String> visibleItems;
+    private List<String> expandedItems;
 
     public PlayerGui(@Nonnull PlayerRef playerRef) {
         super(playerRef, CustomPageLifetime.CanDismiss, SearchGuiData.CODEC);
         this.searchQuery = "";
         this.visibleItems = new ArrayList<>();
+        this.expandedItems = new ArrayList<>();
     }
 
     @Override
@@ -165,6 +167,13 @@ public class PlayerGui extends InteractiveCustomUIPage<PlayerGui.SearchGuiData> 
                     kick(store, player1.getUuid());
                 }
             }
+            if (data.button.equals("ToggleExpanded")){
+                if (expandedItems.contains(data.uuid)) {
+                    expandedItems.remove(data.uuid);
+                } else {
+                    expandedItems.add(data.uuid);
+                }
+            }
         }
 
         if (data.searchQuery != null) {
@@ -222,6 +231,13 @@ public class PlayerGui extends InteractiveCustomUIPage<PlayerGui.SearchGuiData> 
 
 
             uiCommandBuilder.append("#IndexCards", "Pages/Player/Buuz135_AdminUI_PlayerEntry.ui");
+            eventBuilder.addEventBinding(CustomUIEventBindingType.Activating, "#IndexCards[" + i + "]", EventData.of("Button", "ToggleExpanded").append("UUID", name), false);
+            if (this.expandedItems.contains(name)) {
+                uiCommandBuilder.set("#IndexCards[" + i + "] #ExtendedInfo.Visible", true);
+                uiCommandBuilder.set("#IndexCards[" + i + "] #ExpandedIcon.Visible", false);
+                uiCommandBuilder.set("#IndexCards[" + i + "] #ExpandedIconDown.Visible", true);
+            }
+
             uiCommandBuilder.set("#IndexCards[" + i + "] #MemberName.Text", name);
             uiCommandBuilder.set("#IndexCards[" + i + "] #MemberUUID.Text", uuid.toString());
             uiCommandBuilder.set("#IndexCards[" + i + "] #Ping.Text", "Ping: "+ FormatUtil.simpleTimeUnitFormat((long) playerRef.getPacketHandler().getPingInfo(PongType.Raw).getPingMetricSet().getAverage(0), PacketHandler.PingInfo.TIME_UNIT, 0));

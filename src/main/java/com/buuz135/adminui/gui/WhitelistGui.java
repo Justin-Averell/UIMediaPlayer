@@ -70,9 +70,9 @@ public class WhitelistGui extends InteractiveCustomUIPage<WhitelistGui.SearchGui
                 AdminUI.getInstance().getWhitelistProvider().setEnabled(!AdminUI.getInstance().getWhitelistProvider().isEnabled());
                 AdminUI.getInstance().getWhitelistProvider().syncSave();
                 if (AdminUI.getInstance().getWhitelistProvider().isEnabled()){
-                    player.sendMessage(Message.translation("modules.whitelist.enabled"));
+                    player.sendMessage(Message.translation("server.modules.whitelist.enabled"));
                 } else {
-                    player.sendMessage(Message.translation("modules.whitelist.disabled"));
+                    player.sendMessage(Message.translation("server.modules.whitelist.disabled"));
                 }
                 return;
             }
@@ -95,14 +95,14 @@ public class WhitelistGui extends InteractiveCustomUIPage<WhitelistGui.SearchGui
                 UUID finalUuid = uuid;
                 if (AdminUI.getInstance().getWhitelistProvider().modify(uuids -> uuids.add(finalUuid))) {
                     AdminUI.getInstance().getWhitelistProvider().syncSave();
-                    player.sendMessage(Message.translation("modules.whitelist.addSuccess").param("name", this.inputField));
+                    player.sendMessage(Message.translation("server.modules.whitelist.addSuccess").param("name", this.inputField));
                     UICommandBuilder commandBuilder = new UICommandBuilder();
                     UIEventBuilder eventBuilder = new UIEventBuilder();
                     this.buildList(ref, commandBuilder, eventBuilder, store);
                     this.sendUpdate(commandBuilder, eventBuilder, false);
                     return;
                 } else {
-                    player.sendMessage(Message.translation("modules.whitelist.alreadyWhitelisted").param("name", inputField));
+                    player.sendMessage(Message.translation("server.modules.whitelist.alreadyWhitelisted").param("name", inputField));
                 }
 
                 return;
@@ -122,7 +122,7 @@ public class WhitelistGui extends InteractiveCustomUIPage<WhitelistGui.SearchGui
                 var uuid = UUID.fromString(split[1]);
                 AdminUI.getInstance().getWhitelistProvider().modify(uuids -> uuids.remove(uuid));
                 AdminUI.getInstance().getWhitelistProvider().syncSave();
-                player.sendMessage(Message.translation("modules.whitelist.removalSuccess").param("uuid", uuid.toString()));
+                player.sendMessage(Message.translation("server.modules.whitelist.removalSuccess").param("uuid", uuid.toString()));
                 this.requestingConfirmation = -1;
             }
             UICommandBuilder commandBuilder = new UICommandBuilder();

@@ -18,7 +18,7 @@ $C = "../../Common.ui";
   Sounds: $C.@ButtonSounds,
 );
 
-Group {
+Button #FullPlayerEntry {
   LayoutMode: Top;
   Background: $C.@InputBoxBackground;
   Padding: (Top: 5, Bottom: 5, Left: 10, Right: 10);
@@ -83,7 +83,19 @@ Group {
       ContentHeight: 10;
       Visible: false;
     }
-  
+    Label {
+      FlexWeight: 1;
+    }
+    Group #ExpandedIcon{
+      Background: "../../Common/DropdownPressedCaret.png";
+      Anchor: (Width: 8, Height: 4, Top: 6, Bottom: 4);
+    }
+    Group #ExpandedIconDown{
+      Background: "../../Common/DropdownDown.png";
+      Anchor: (Width: 14, Height: 8,);
+      Padding: (Top: 10);
+      Visible: false;
+    }
   }
 
   Label #MemberUUID {
@@ -95,223 +107,228 @@ Group {
     Anchor: (Left: 1, Top: 0);
   }
 
-  Group {
-    LayoutMode: Left;
-    Label  {
-      Text: "Health: ";
-      Style: (
-        FontSize: 14,
-        RenderBold: true,
-        TextColor: #93844c
-      );
-      Anchor: (Vertical: 0);
-    }
-    Label #HealthValue {
-      Text: "Health:";
-      Style: (
-        FontSize: 14,
-        RenderBold: false,
-        TextColor: #ffffff
-      );
-      Anchor: (Vertical: 0);
-    }
-  }
-  Group {
-    LayoutMode: Left;
-    Label  {
-      Text: "World: ";
-      Style: (
-        FontSize: 14,
-        RenderBold: true,
-        TextColor: #93844c
-      );
-      Anchor: (Vertical: 0);
-    }
-    Label #WorldValue {
-      Text: "Health:";
-      Style: (
-        FontSize: 14,
-        RenderBold: false,
-        TextColor: #ffffff
-      );
-      Anchor: (Vertical: 0);
-    }
-    Label  {
-      Anchor: (Left: 10);
-      Text: "X: ";
-      Style: (
-        FontSize: 14,
-        RenderBold: true,
-        TextColor: #93844c
-      );
-    }
-    Label #XValue {
-      Text: "Health:";
-      Style: (
-        FontSize: 14,
-        RenderBold: false,
-        TextColor: #ffffff
-      );
-      Anchor: (Vertical: 0);
-    }
-    Label  {
-      Text: "Y: ";
-      Style: (
-        FontSize: 14,
-        RenderBold: true,
-        TextColor: #93844c
-      );
-      Anchor: (Left: 10);
-    }
-    Label #YValue {
-      Text: "Y:";
-      Style: (
-        FontSize: 14,
-        RenderBold: false,
-        TextColor: #ffffff
-      );
-      Anchor: (Vertical: 0);
-    }
-    Label  {
-      Text: "Z: ";
-      Style: (
-        FontSize: 14,
-        RenderBold: true,
-        TextColor: #93844c
-      );
-      Anchor: (Left: 10);
-    }
-    Label #ZValue {
-      Text: "Z:";
-      Style: (
-        FontSize: 14,
-        RenderBold: false,
-        TextColor: #ffffff
-      );
-      Anchor: (Vertical: 0);
-    }
-    $C.@TextButton #TeleportToButton {
-      Anchor: (Height: 20, Right: 4, Left: 10, Width: 90);
-      Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
-      Text: "TP THERE";
-      Style: @CustomStyle;
-    }
-  }
+  Group #ExtendedInfo{
+    LayoutMode: Top;
+    Visible: false;
 
-  Group {
-    LayoutMode: Left;
-    Anchor: (Bottom: 5);
-
-    Group #Gamemode {
-      LayoutMode: Top;
-      FlexWeight: 1;
-      Anchor: (Right: 8);
-
-      Label #GamemodeLabel {
-        Text: "Gamemode";
+    Group {
+      LayoutMode: Left;
+      Label  {
+        Text: "Health: ";
         Style: (
-          FontSize: 15,
+          FontSize: 14,
           RenderBold: true,
           TextColor: #93844c
         );
         Anchor: (Vertical: 0);
       }
-
-      $C.@DropdownBox #GamemodeDropdown {
-        Anchor: (Width: 262, Height: 20);
-        Style: @DefaultDropdownBoxStyle;
+      Label #HealthValue {
+        Text: "Health:";
+        Style: (
+          FontSize: 14,
+          RenderBold: false,
+          TextColor: #ffffff
+        );
+        Anchor: (Vertical: 0);
       }
     }
-
-    Group #Model {
-      LayoutMode: Top;
-      FlexWeight: 1;
-
-      Label #GamemodeLabel {
-        Text: "Model";
+    Group {
+      LayoutMode: Left;
+      Label  {
+        Text: "World: ";
         Style: (
-          FontSize: 15,
+          FontSize: 14,
           RenderBold: true,
           TextColor: #93844c
         );
-        Anchor: (Left:2);
-      
+        Anchor: (Vertical: 0);
       }
-
-      Group {
-        LayoutMode: Left;
-      
-        $C.@DropdownBox #ModelDropdown {
-          Anchor: (Width: 200, Height: 20);
-          Style: (
-            ...@DefaultDropdownBoxStyle,
-            SearchInputStyle: DropdownBoxSearchInputStyle(
-              Anchor: (Height: 20),
-              Padding: (Left: 28, Right: 24),
-              PlaceholderText: %customUI.searchPlaceholder,
-              PlaceholderStyle: (TextColor: #3d5a85, RenderUppercase: true, FontSize: 14),
-              Icon: (Texture: "Common/SearchIcon.png", Width: 16, Height: 16, Offset: 9),
-              ClearButtonStyle: $C.@ClearButtonStyle
-            )
-          );
-          ShowSearchInput: true;
-        }
-        $C.@TextButton #ModelResetButton {
-          FlexWeight: 1;
-          Anchor: (Height: 20, Right: 4, Left: 2);
-          Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
-          Text: "Reset";
-          Style: @CustomStyle;
-        }
+      Label #WorldValue {
+        Text: "Health:";
+        Style: (
+          FontSize: 14,
+          RenderBold: false,
+          TextColor: #ffffff
+        );
+        Anchor: (Vertical: 0);
+      }
+      Label  {
+        Anchor: (Left: 10);
+        Text: "X: ";
+        Style: (
+          FontSize: 14,
+          RenderBold: true,
+          TextColor: #93844c
+        );
+      }
+      Label #XValue {
+        Text: "Health:";
+        Style: (
+          FontSize: 14,
+          RenderBold: false,
+          TextColor: #ffffff
+        );
+        Anchor: (Vertical: 0);
+      }
+      Label  {
+        Text: "Y: ";
+        Style: (
+          FontSize: 14,
+          RenderBold: true,
+          TextColor: #93844c
+        );
+        Anchor: (Left: 10);
+      }
+      Label #YValue {
+        Text: "Y:";
+        Style: (
+          FontSize: 14,
+          RenderBold: false,
+          TextColor: #ffffff
+        );
+        Anchor: (Vertical: 0);
+      }
+      Label  {
+        Text: "Z: ";
+        Style: (
+          FontSize: 14,
+          RenderBold: true,
+          TextColor: #93844c
+        );
+        Anchor: (Left: 10);
+      }
+      Label #ZValue {
+        Text: "Z:";
+        Style: (
+          FontSize: 14,
+          RenderBold: false,
+          TextColor: #ffffff
+        );
+        Anchor: (Vertical: 0);
+      }
+      $C.@TextButton #TeleportToButton {
+        Anchor: (Height: 20, Right: 4, Left: 10, Width: 90);
+        Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+        Text: "TP THERE";
+        Style: @CustomStyle;
       }
     }
 
-  }
+    Group {
+      LayoutMode: Left;
+      Anchor: (Bottom: 5);
+
+      Group #Gamemode {
+        LayoutMode: Top;
+        FlexWeight: 1;
+        Anchor: (Right: 8);
+
+        Label #GamemodeLabel {
+          Text: "Gamemode";
+          Style: (
+            FontSize: 15,
+            RenderBold: true,
+            TextColor: #93844c
+          );
+          Anchor: (Vertical: 0);
+        }
+
+        $C.@DropdownBox #GamemodeDropdown {
+          Anchor: (Width: 262, Height: 20);
+          Style: @DefaultDropdownBoxStyle;
+        }
+      }
+
+      Group #Model {
+        LayoutMode: Top;
+        FlexWeight: 1;
+
+        Label #GamemodeLabel {
+          Text: "Model";
+          Style: (
+            FontSize: 15,
+            RenderBold: true,
+            TextColor: #93844c
+          );
+          Anchor: (Left:2);
+        
+        }
+
+        Group {
+          LayoutMode: Left;
+        
+          $C.@DropdownBox #ModelDropdown {
+            Anchor: (Width: 200, Height: 20);
+            Style: (
+              ...@DefaultDropdownBoxStyle,
+              SearchInputStyle: DropdownBoxSearchInputStyle(
+                Anchor: (Height: 20),
+                Padding: (Left: 28, Right: 24),
+                PlaceholderText: %customUI.searchPlaceholder,
+                PlaceholderStyle: (TextColor: #3d5a85, RenderUppercase: true, FontSize: 14),
+                Icon: (Texture: "Common/SearchIcon.png", Width: 16, Height: 16, Offset: 9),
+                ClearButtonStyle: $C.@ClearButtonStyle
+              )
+            );
+            ShowSearchInput: true;
+          }
+          $C.@TextButton #ModelResetButton {
+            FlexWeight: 1;
+            Anchor: (Height: 20, Right: 4, Left: 2);
+            Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+            Text: "Reset";
+            Style: @CustomStyle;
+          }
+        }
+      }
+
+    }
 
   
-  Group #Actions{
-    LayoutMode: Left;
-    $C.@TextButton #TeleportHereButton {
-      FlexWeight: 1;
-      Anchor: ( Height: 20, Right: 4);
-      Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
-      Text: "TP Here";
-      Style: @CustomStyle;
-    }
-    $C.@TextButton #HealButton {
-      FlexWeight: 1;
-      Anchor: ( Height: 20, Right: 4);
-      Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
-      Text: "Heal";
-      Style: @CustomStyle;
-    }
-    $C.@TextButton #KillButton {
-      FlexWeight: 1;
-      Anchor: ( Height: 20, Right: 4);
-      Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
-      Text: "Kill";
-      Style: @CustomStyle;
-    }
-    $C.@TextButton #InventoryButton {
-      FlexWeight: 1;
-      Anchor: ( Height: 20, Right: 4);
-      Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
-      Text: "SEE INV";
-      Style: @CustomStyle;
-    }
-    $C.@TextButton #KickButton {
-      FlexWeight: 1;
-      Anchor: ( Height: 20, Right: 4);
-      Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
-      Text: "Kick";
-      Style: @CustomStyle;
-    }
-    $C.@TextButton #BanButton {
-      FlexWeight: 1;
-      Anchor: (Height: 20, Right: 4);
-      Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
-      Text: "Ban";
-      Style: @CustomStyle;
+    Group #Actions{
+      LayoutMode: Left;
+      $C.@TextButton #TeleportHereButton {
+        FlexWeight: 1;
+        Anchor: ( Height: 20, Right: 4);
+        Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+        Text: "TP Here";
+        Style: @CustomStyle;
+      }
+      $C.@TextButton #HealButton {
+        FlexWeight: 1;
+        Anchor: ( Height: 20, Right: 4);
+        Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+        Text: "Heal";
+        Style: @CustomStyle;
+      }
+      $C.@TextButton #KillButton {
+        FlexWeight: 1;
+        Anchor: ( Height: 20, Right: 4);
+        Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+        Text: "Kill";
+        Style: @CustomStyle;
+      }
+      $C.@TextButton #InventoryButton {
+        FlexWeight: 1;
+        Anchor: ( Height: 20, Right: 4);
+        Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+        Text: "SEE INV";
+        Style: @CustomStyle;
+      }
+      $C.@TextButton #KickButton {
+        FlexWeight: 1;
+        Anchor: ( Height: 20, Right: 4);
+        Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+        Text: "Kick";
+        Style: @CustomStyle;
+      }
+      $C.@TextButton #BanButton {
+        FlexWeight: 1;
+        Anchor: (Height: 20, Right: 4);
+        Padding: (Left: 8, Right: 8, Top: 4, Bottom: 4);
+        Text: "Ban";
+        Style: @CustomStyle;
+      }
     }
   }
 }

@@ -91,7 +91,7 @@ public class MuteGui extends InteractiveCustomUIPage<MuteGui.SearchGuiData> {
                 if (playerTracker != null){
                     uuid = playerTracker.uuid();
                 } else {
-                    player.sendMessage(Message.raw("That player hasn't joined the server yet, the ban is not reliable"));
+                    player.sendMessage(Message.raw("That player hasn't joined the server yet, the mute is not reliable"));
                     try {
                         uuid = AuthUtil.lookupUuid(inputField).get();
                     } catch (InterruptedException | ExecutionException e) {
@@ -131,7 +131,7 @@ public class MuteGui extends InteractiveCustomUIPage<MuteGui.SearchGuiData> {
                 var uuid = UUID.fromString(split[1]);
                 AdminUI.getInstance().getMuteTracker().getMutes().removeIf(mute -> mute.target().equals(uuid));
                 AdminUI.getInstance().getMuteTracker().syncSave();
-                player.sendMessage(Message.translation("modules.unban.success").param("name", uuid.toString()));
+                player.sendMessage(Message.raw("Unmuted player " + uuid));
                 this.requestingConfirmation = -1;
             }
             UICommandBuilder commandBuilder = new UICommandBuilder();

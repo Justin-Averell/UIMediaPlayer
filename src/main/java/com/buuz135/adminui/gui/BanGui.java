@@ -92,7 +92,7 @@ public class BanGui extends InteractiveCustomUIPage<BanGui.SearchGuiData> {
                 var ban = new InfiniteBan(finalUuid, store.getComponent(ref, UUIDComponent.getComponentType()).getUuid(), Instant.now(), reasonField);
                 if (AdminUI.getInstance().getBanProvider().modify(uuids -> {uuids.put(finalUuid, ban);return true;})) {
                     AdminUI.getInstance().getBanProvider().syncSave();
-                    player.sendMessage(Message.translation("modules.ban.bannedWithReason").param("name", this.inputField).param("reason", this.reasonField));
+                    player.sendMessage(Message.translation("server.modules.ban.bannedWithReason").param("name", this.inputField).param("reason", this.reasonField));
                     attemptToKickPlayerIfPresent(ban, playerRef, this.inputField, this.reasonField);
                     UICommandBuilder commandBuilder = new UICommandBuilder();
                     UIEventBuilder eventBuilder = new UIEventBuilder();
@@ -120,7 +120,7 @@ public class BanGui extends InteractiveCustomUIPage<BanGui.SearchGuiData> {
                 var uuid = UUID.fromString(split[1]);
                 AdminUI.getInstance().getBanProvider().modify(uuids -> uuids.remove(uuid) != null);
                 AdminUI.getInstance().getBanProvider().syncSave();
-                player.sendMessage(Message.translation("modules.unban.success").param("name", uuid.toString()));
+                player.sendMessage(Message.translation("server.modules.unban.success").param("name", uuid.toString()));
                 this.requestingConfirmation = -1;
             }
             UICommandBuilder commandBuilder = new UICommandBuilder();
@@ -145,11 +145,11 @@ public class BanGui extends InteractiveCustomUIPage<BanGui.SearchGuiData> {
             try {
                 disconnectReason = ban.getDisconnectReason(ban.getTarget()).get().orElse("Failed to get disconnect reason.");
             } catch (InterruptedException | ExecutionException e) {
-                context.sendMessage(Message.translation("modules.ban.failedDisconnectReason").param("name", username));
+                context.sendMessage(Message.translation("server.modules.ban.failedDisconnectReason").param("name", username));
                 e.printStackTrace();
             }
             player.getPacketHandler().disconnect(disconnectReason);
-            context.sendMessage(Message.translation("modules.ban.bannedWithReason").param("name", username).param("reason", reason));
+            context.sendMessage(Message.translation("server.modules.ban.bannedWithReason").param("name", username).param("reason", reason));
         }
     }
 

@@ -1,19 +1,21 @@
 {
   "Group": "Buuz135",
   "Name": "AdminUI",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "Description": "Adds multiple admin ui pages to the game.",
   "Authors": [
     {
       "Name": "Buuz135"
     }
   ],
-  "Website": "website",
+  "Website": "https://buuz135.com",
   "ServerVersion": "*",
   "Dependencies": {
     "Hytale:AccessControlModule": "*"
   },
-  "OptionalDependencies": {},
+  "OptionalDependencies": {
+
+  },
   "DisabledByDefault": false,
   "Main": "com.buuz135.adminui.AdminUI",
   "IncludesAssetPack": true
